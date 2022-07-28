@@ -1,0 +1,57 @@
+<!-- Setting the doctype -->
+<!DOCTYPE html> 
+<!-- Setting the mainn language -->
+<html lang="en">
+<head>
+    <!-- HTML stuff -->
+    <meta charset="UTF-8">
+    <!-- HTML stuff -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- HTML stuff -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Document title -->
+    <title>Document</title>
+    <!-- linking a stylesheet from fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Linking the css stylesheet-->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- h1 text -->
+    <h1>Todo List: </h1> 
+    <!-- unordered list with a class todoItems-->
+    <ul class="todoItems">
+        <!-- ejs syntax to run a for loop that iterates through all the items and creates lis for them -->
+    <% for(let i=0; i < items.length; i++) {%>
+        <!-- list with a class of item -->
+        <li class="item">
+            <!-- if the current items completed variable is true run some code -->
+            <% if(items[i].completed === true) {%>
+                <!-- add the class of completed to the item -->
+                <p class='completed'><%= items[i].thing %></p>
+                <!-- If it is not true do something else -->
+            <% }else{ %>
+                <!-- Create a span with no class -->
+                <span><%= items[i].thing %></span>
+            <% } %>  
+              <!-- span with class  -->
+            <span class='fa fa-trash'></span>
+        </li>
+    <% } %>
+    </ul>
+    <!-- Displaying things left in the list -->
+    <h2>Left to do: <%= left %></h2>
+    <!-- Title for the form -->
+    <h2>Add A Todo:</h2>
+    <!-- Form thats sends post request to the '/addTodo' path -->
+    <form action="/addTodo" method="POST">
+        <!-- input field for the todo item that is to be added -->
+        <input type="text" placeholder="Thing To Do" name="todoItem">
+        <!-- Submit button -->
+        <input type="submit">
+    </form>
+    
+    <!-- Adding JS functionality -->
+    <script src='js/main.js'></script>
+</body>
+</html>
